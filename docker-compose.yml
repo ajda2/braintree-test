@@ -1,0 +1,71 @@
+version: '3.1'
+
+services:
+    php-apache:
+        build:
+            context: ./
+            dockerfile: .docker/php-apache/Dockerfile
+        container_name: php-apache
+        ports:
+            - "8080:80"
+        links:
+            - mysql
+        volumes:
+            - ./:/var/www/html
+            - .docker/php-apache/logs/apache:/var/log/apache2
+            - .docker/php-apache/logs/php:/usr/local/etc/php/log
+
+    php-apache-debug:
+        build:
+            context: ./
+            dockerfile: .docker/php-apache-debug/Dockerfile
+        container_name: php-apache-debug
+        ports:
+            - "8083:80"
+        links:
+            - mysql-test
+        volumes:
+            - ./:/var/www/html
+            - .docker/php-apache-debug/logs/apache:/var/log/apache2
+            - .docker/php-apache-debug/logs/php:/usr/local/etc/php/log
+        environment:
+            XDEBUG_CONFIG: remote_host=host.docker.internal
+
+    mysql:
+        image: mysql:5.7
+        container_name: mysql
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --init-connect='SET NAMES utf8mb4;' --innodb-flush-log-at-trx-commit=0
+        volumes:
+            - .database/create.sql:/docker-entrypoint-initdb.d/schema.sql
+            - .docker/mysql/data:/var/lib/mysql
+        ports:
+            - "8306:3306"
+        env_file: .env
+
+    mysql-test:
+        image: mysql:5.7
+        container_name: mysql-test
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --init-connect='SET NAMES utf8mb4;' --innodb-flush-log-at-trx-commit=0
+        volumes:
+            - .database/create.sql:/docker-entrypoint-initdb.d/schema.sql
+            - .docker/mysql-test/data:/var/lib/mysql
+        ports:
+            - "9306:3306"
+        env_file: .env
+
+    adminer:
+        container_name: adminer
+        image: adminer
+        ports:
+            - "8081:8080"
+        links:
+            - mysql
+            - mysql-test
+        environment:
+            ADMINER_DEFAULT_SERVER: mysql
+
+    mailhog:
+        container_name: mailhog
+        image: mailhog/mailhog
+        ports:
+            - "8082:8025"

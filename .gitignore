@@ -5,7 +5,5 @@ node_modules/*
 .idea
 .env
 !.gitkeep
-.docker/mysql/data
-.docker/mysql-test/data
 .docker/php-apache/logs
 .docker/php-apache-debug/logs

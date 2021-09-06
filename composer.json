@@ -1,0 +1,83 @@
+{
+  "name": "michal-tichy/braintree-test",
+  "description": "Test project for BrainTree Subscription",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Michal Tichý",
+      "email": "michal@tichy-vyvojar.cz",
+      "homepage": "https://www.tichy-vyvojar.cz/",
+      "role": "Developer"
+    }
+  ],
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.4",
+    "nette/application": "^v3.1",
+    "nette/bootstrap": "^3.1",
+    "nette/caching": "^3.1",
+    "nette/database": "^3.1",
+    "nette/di": "^3.0",
+    "nette/forms": "^3.1",
+    "nette/http": "^3.1",
+    "nette/mail": "^3.1",
+    "nette/utils": "^3.2",
+    "latte/latte": "^2.10",
+    "tracy/tracy": "^2.8",
+    "guzzlehttp/guzzle": "^7.3",
+    "ramsey/uuid": "^4.2",
+    "ext-pdo": "*",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "phpstan/phpstan": "^0.12.98",
+    "phpstan/phpstan-nette": "^0.12.21",
+    "phpstan/phpstan-strict-rules": "^0.12.11",
+    "phpstan/phpstan-phpunit": "^0.12.22",
+    "phpunit/phpunit": "^7.5",
+    "phpunit/dbunit": "^4.0",
+    "slevomat/coding-standard": "^7.0"
+  },
+  "scripts": {
+    "tests-unit": "php vendor/bin/phpunit --configuration tests/Unit/phpunit_unit.xml",
+    "tests-integration": "php vendor/bin/phpunit --configuration tests/Integration/phpunit_integration.xml",
+    "phpstan": "php vendor/bin/phpstan analyse -l 8 -c .cs/phpstan.neon app tests/Unit tests/Integration/Model --memory-limit 400M",
+    "cs": "php vendor/bin/phpcs --standard=.cs/ruleset.xml --extensions=php --tab-width=4 --colors -sp app tests/Unit tests/Integration/Model",
+    "cs-fix": "php vendor/bin/phpcbf --standard=.cs/ruleset.xml --extensions=php --tab-width=4 --colors -sp app tests/Unit tests/Integration/Model",
+    "tests": [
+      "@tests-unit",
+      "@tests-integration"
+    ],
+    "build": [
+      "@cs",
+      "@phpstan",
+      "@tests-unit"
+    ],
+    "build-complete": [
+      "@cs",
+      "@phpstan",
+      "@tests"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "Mrcek\\BraintreeTest\\": "app/"
+    },
+    "exclude-from-classmap": [
+      "tests/"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mrcek\\BraintreeTest\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "process-timeout": 2000,
+    "platform": {
+      "php": "7.4.0"
+    }
+  }
+}
