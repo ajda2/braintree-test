@@ -10,6 +10,7 @@ use Mrcek\BraintreeTest\Config\Code;
 use Mrcek\BraintreeTest\Config\ConfigFacade;
 use Mrcek\BraintreeTest\Repository\Exceptions\NotFoundException;
 use Nette\SmartObject;
+use UnexpectedValueException;
 
 class GatewayFactory {
 
@@ -23,8 +24,11 @@ class GatewayFactory {
 
 	/**
 	 * @throws NotFoundException
+	 * @throws UnexpectedValueException
 	 */
-	public function create(Environment $env): Gateway {
+	public function create(): Gateway {
+		$env = new Environment((string)$this->configFacade->getValue(new Code(Code::BRAINTREE_ENVIRONMENT)));
+
 		return new Gateway(
 			[
 				'environment' => $env->getValue(),
