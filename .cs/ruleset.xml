@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<ruleset name="project_name">
+	<config name="installed_paths" value="vendor/slevomat/coding-standard/SlevomatCodingStandard" />
+
+	<!-- Data Types	-->
+	<rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes" />
+	<rule ref="Generic.PHP.RequireStrictTypes" />
+	<rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing" />
+	<rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue" />
+	<rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHintSpacing" />
+	<rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
+		<exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.UselessAnnotation" />
+	</rule>
+	<rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint" />
+	<rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint" />
+
+	<!-- Disallow dangerous functions -->
+	<rule ref="SlevomatCodingStandard.ControlStructures.DisallowEmpty" />
+	<rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse" />
+	<rule ref="SlevomatCodingStandard.ControlStructures.RequireShortTernaryOperator" />
+
+	<!-- Namespaces	-->
+	<rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions" />
+	<rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants" />
+	<rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly" />
+	<rule ref="SlevomatCodingStandard.Namespaces.UseFromSameNamespace" />
+	<rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses" />
+	<rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile" />
+	<rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine" />
+	<rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
+		<properties>
+			<property name="searchAnnotations" value="true" />
+		</properties>
+	</rule>
+
+	<!-- Class and Inheritance	-->
+	<rule ref="SlevomatCodingStandard.ControlStructures.LanguageConstructWithParentheses" />
+	<rule ref="SlevomatCodingStandard.Classes.ClassConstantVisibility" />
+	<rule ref="Generic.Files.OneTraitPerFile" />
+	<rule ref="Generic.Files.OneClassPerFile" />
+
+	<!-- Formatting	-->
+	<rule ref="SlevomatCodingStandard.ControlStructures.AssignmentInCondition" />
+	<rule ref="SlevomatCodingStandard.Exceptions.DeadCatch" />
+	<rule ref="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming" />
+	<rule ref="SlevomatCodingStandard.Commenting.EmptyComment" />
+	<rule ref="Generic.Classes.OpeningBraceSameLine" />
+	<rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
+	<rule ref="Generic.Formatting.NoSpaceAfterCast" />
+	<rule ref="Generic.NamingConventions.UpperCaseConstantName" />
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />
+	<rule ref="Generic.PHP.LowerCaseConstant" />
+	<rule ref="Generic.PHP.LowerCaseKeyword" />
+
+	<rule ref="SlevomatCodingStandard.Files.LineLength">
+		<properties>
+			<property name="lineLengthLimit" value="120" />
+			<property name="ignoreComments" value="true" />
+			<property name="ignoreImports" value="true" />
+		</properties>
+	</rule>
+
+
+	<!-- Misc -->
+	<rule ref="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming">
+		<exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix" />
+	</rule>
+</ruleset>

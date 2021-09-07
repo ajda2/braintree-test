@@ -1,0 +1,16 @@
+includes:
+	- ../vendor/phpstan/phpstan-nette/extension.neon
+	- ../vendor/phpstan/phpstan-nette/rules.neon
+	- ../vendor/phpstan/phpstan-strict-rules/rules.neon
+	- ../vendor/phpstan/phpstan-phpunit/extension.neon
+	- ../vendor/phpstan/phpstan-phpunit/rules.neon
+
+parameters:
+#	checkGenericClassInNonGenericObjectType: false
+
+	excludes_analyse:
+
+	ignoreErrors:
+#		- '#Dynamic call to static method XMLReader::open\(\).#'
+#		- '#Parameter \#[0-9]+ \$[a-zA-Z0-9]+ of method Nette\\Database\\Table\\Selection::limit\(\) expects int\<0, max\>\|null, [a-z\|]+ given\.#'
+#		- '#Call to method Imagick::[a-zA-Z0-9\\_\(\)]+ with incorrect case: [a-zA-Z0-9\\_]+#'

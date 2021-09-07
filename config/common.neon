@@ -1,0 +1,24 @@
+services:
+	- Mrcek\BraintreeTest\Router\RouterFactory::createRouter
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: Mrcek\BraintreeTest\*Module\Presenters\*Presenter
+
+tracy:
+	showLocation: true
+
+session:
+	expiration: 14 days
+	debugger: true
+	cookieSamesite: Strict
+
+
+database:
+	dsn: 'mysql:host=mysql;dbname=braintree'
+	user: 'braintree'
+	password: '123'
+	options:
+		lazy: yes
