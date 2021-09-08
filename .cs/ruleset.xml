@@ -3,7 +3,11 @@
 	<config name="installed_paths" value="vendor/slevomat/coding-standard/SlevomatCodingStandard" />
 
 	<!-- Data Types	-->
-	<rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes" />
+	<rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+		<properties>
+			<property name="declareOnFirstLine" value="true" />
+		</properties>
+	</rule>
 	<rule ref="Generic.PHP.RequireStrictTypes" />
 	<rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing" />
 	<rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue" />

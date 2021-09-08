@@ -1,0 +1,5 @@
+services:
+	- Mrcek\BraintreeTest\Router\RouterFactory::createRouter
+	- @app.brainTree.gatewayFactory::create()
+	- Mrcek\BraintreeTest\Config\ConfigRepository
+	- Mrcek\BraintreeTest\Config\ConfigFacade

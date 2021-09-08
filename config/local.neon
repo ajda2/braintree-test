@@ -1,0 +1,13 @@
+parameters:
+	brainTree:
+		environment: \Mrcek\BraintreeTest\Braintree\Environment::SANDBOX
+		merchan_id: 'your merchant id'
+		public_key: 'your public key'
+		private_key: 'your private key'
+
+
+services:
+	# Load BrainTree configuration from AppConfig DB table
+#	app.brainTree.gatewayFactory: Mrcek\BraintreeTest\Braintree\GatewayFromDbConfigFactory
+	# Manualy passed braintree configuration from .neon parameters
+	app.brainTree.gatewayFactory: Mrcek\BraintreeTest\Braintree\GatewayManualConfigFactory(%brainTree.environment%, %brainTree.merchan_id%, %brainTree.public_key%, %brainTree.private_key%)

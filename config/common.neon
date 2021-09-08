@@ -1,6 +1,5 @@
-services:
-	- Mrcek\BraintreeTest\Router\RouterFactory::createRouter
-
+includes:
+	- services.neon
 
 application:
 	errorPresenter: Error
