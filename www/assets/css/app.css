@@ -1,0 +1,106 @@
+.steps {
+	border-top: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
+	padding: 12px 20px;
+}
+
+.steps ul {
+	justify-content: space-around;
+	-moz-justify-content: space-around;
+	-webkit-justify-content: space-around;
+	-o-justify-content: space-around;
+	-ms-justify-content: space-around;
+	display: flex;
+	display: -webkit-flex;
+}
+
+li, ul, .actions ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.steps ul li {
+	padding-right: 80px;
+	padding-left: 0;
+	position: relative;
+}
+
+.steps ul li a {
+	color: #999;
+	text-decoration: none;
+	font-weight: 700;
+}
+
+.steps ul .done a {
+	color: #1abc9c;
+}
+
+.steps ul .current a {
+	color: #222;
+}
+
+.steps ul .current a .number {
+	border: 2px solid #222;
+}
+
+.title {
+	align-items: center;
+	-moz-align-items: center;
+	-webkit-align-items: center;
+	-o-align-items: center;
+	-ms-align-items: center;
+}
+
+.steps ul .done a .number {
+	position: relative;
+	/*font-size: 0;*/
+	border: 2px solid #1abc9c;
+}
+
+.number {
+	width: 31px;
+	height: 31px;
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-o-border-radius: 50%;
+	-ms-border-radius: 50%;
+	align-items: center;
+	-moz-align-items: center;
+	-webkit-align-items: center;
+	-o-align-items: center;
+	-ms-align-items: center;
+	justify-content: center;
+	-moz-justify-content: center;
+	-webkit-justify-content: center;
+	-o-justify-content: center;
+	-ms-justify-content: center;
+	border: 2px solid #999;
+	margin-right: 15px;
+}
+
+.steps ul li:after {
+	position: absolute;
+	width: 1px;
+	height: 30px;
+	content: "";
+	background: #ebebeb;
+	right: 18px;
+	top: 50%;
+	transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+}
+
+.steps ul li:last-child:after {
+	width: 0;
+}
+
+
+display-flex, .form-group, .form-select, .form-radio, .form-textarea, .form-date, .form-radio-item, .form-flex, .form-date-item .select-icon, .form-date-item .select-icon i, #val, #button, .steps ul, .actions ul, .actions ul li a, .title, .number {
+	display: flex;
+	display: -webkit-flex;
+}

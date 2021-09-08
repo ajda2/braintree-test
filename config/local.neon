@@ -8,6 +8,6 @@ parameters:
 
 services:
 	# Load BrainTree configuration from AppConfig DB table
-#	app.brainTree.gatewayFactory: Mrcek\BraintreeTest\Braintree\GatewayFromDbConfigFactory
+	app.brainTree.gatewayFactory: Mrcek\BraintreeTest\Braintree\GatewayFromDbConfigFactory
 	# Manualy passed braintree configuration from .neon parameters
-	app.brainTree.gatewayFactory: Mrcek\BraintreeTest\Braintree\GatewayManualConfigFactory(%brainTree.environment%, %brainTree.merchan_id%, %brainTree.public_key%, %brainTree.private_key%)
+#	app.brainTree.gatewayFactory: Mrcek\BraintreeTest\Braintree\GatewayManualConfigFactory(%brainTree.environment%, %brainTree.merchan_id%, %brainTree.public_key%, %brainTree.private_key%)

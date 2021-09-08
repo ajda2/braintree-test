@@ -23,15 +23,11 @@ abstract class AbstractRepository {
 
 	protected Explorer $database;
 
-	protected Selection $table;
-
 	protected ILogger $logger;
 
 	public function __construct(Explorer $database, ILogger $logger) {
 		$this->database = $database;
 		$this->logger = $logger;
-
-		$this->table = $this->database->table($this::TABLE_NAME);
 	}
 
 	/**
@@ -65,7 +61,7 @@ abstract class AbstractRepository {
 	public function get(int $id): ?IdentifyEntity {
 		$data = ['id' => $id];
 
-		$row = $this->table->where($data)->limit(1)->fetch();
+		$row = $this->getTable()->where($data)->limit(1)->fetch();
 
 		if (!$row instanceof ActiveRow) {
 			return null;
@@ -78,7 +74,7 @@ abstract class AbstractRepository {
 		$data = ['id' => $id];
 
 		try {
-			$this->table->where($data)->limit(1)->delete();
+			$this->getTable()->where($data)->limit(1)->delete();
 		} catch (\Throwable $e) {
 			$this->logger->log($e, $this->logger::ERROR);
 
@@ -93,11 +89,11 @@ abstract class AbstractRepository {
 	 * @param string|null          $order
 	 * @param int<0, max>|null     $limit
 	 * @param int<0, max>|null     $offset
-	 * @return ArrayList<T>
+	 * @return ArrayList|T[]
 	 */
 	public function findBy(array $by, ?string $order = null, ?int $limit = null, ?int $offset = null): ArrayList {
 		$result = new ArrayList();
-		$selection = $this->table->where($by);
+		$selection = $this->getTable()->where($by);
 		if ($order !== null) {
 			$selection->order($order);
 		}
@@ -129,7 +125,7 @@ abstract class AbstractRepository {
 	 */
 	protected function insert(array $data): ActiveRow {
 		try {
-			$result = $this->table->insert($data);
+			$result = $this->getTable()->insert($data);
 		} catch (\Throwable $e) {
 			throw new InsertException();
 		}
@@ -147,10 +143,14 @@ abstract class AbstractRepository {
 	 */
 	protected function update(array $data): void {
 		try {
-			$this->table->update($data);
+			$this->getTable()->update($data);
 		} catch (\Throwable $e) {
 			throw new UpdateException();
 		}
+	}
+
+	protected function getTable(): Selection {
+		return $this->database->table($this::TABLE_NAME);
 	}
 
 	/**

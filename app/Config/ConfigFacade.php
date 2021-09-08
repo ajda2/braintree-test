@@ -19,6 +19,8 @@ class ConfigFacade {
 	public function __construct(ConfigRepository $repository) {
 		$this->repository = $repository;
 		$this->map = new ArrayHash();
+
+		$this->preload();
 	}
 
 	/**
@@ -40,6 +42,18 @@ class ConfigFacade {
 			return $this->map->offsetGet($code);
 		}
 
-		return $this->repository->findOneBy([$this->repository::COLUMN_CODE => $code]);
+		$value = $this->repository->findOneBy([$this->repository::COLUMN_CODE => $code]);
+
+		if ($value instanceof Value) {
+			$this->map->offsetSet($code, $value);
+		}
+
+		return $value;
+	}
+
+	private function preload(): void {
+		foreach ($this->repository->findBy([]) as $value) {
+			$this->map->offsetSet($value->getCode(), $value);
+		}
 	}
 }

@@ -16,5 +16,35 @@ CREATE TABLE `config` (
   UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
+INSERT INTO `config` (`id`, `code`, `value`) VALUES
+(1,	'braintree_merchant_id',	'{add your value}'),
+(2,	'braintree_public_key',	'{add your value}'),
+(3,	'braintree_private_key',	'{add your value}'),
+(4,	'braintree_environment',	'sandbox');
 
--- 2021-09-07 22:05:32
+DROP TABLE IF EXISTS `subscription`;
+CREATE TABLE `subscription` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) CHARACTER SET ascii NOT NULL,
+  `braintree_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `braintree_plan_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `price` varchar(50) COLLATE utf8mb4_czech_ci NOT NULL,
+  `currency_iso` varchar(10) COLLATE utf8mb4_czech_ci NOT NULL,
+  `status` varchar(50) COLLATE utf8mb4_czech_ci NOT NULL,
+  `billing_period_start_date` datetime NOT NULL,
+  `billing_period_end_date` datetime NOT NULL,
+  `first_billing_date` datetime NOT NULL,
+  `next_billing_date` datetime DEFAULT NULL,
+  `paid_through_date` datetime DEFAULT NULL,
+  `merchant_account_id` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `never_expires` tinyint(1) unsigned NOT NULL,
+  `next_bill_amount` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `next_billing_period_amount` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `payment_method_token` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
+
+
+-- 2021-09-08 20:25:05

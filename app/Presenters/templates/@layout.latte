@@ -2,24 +2,122 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Michal Tichý <michal@tichy-vyvojar.cz>">
+    <meta name="robots" content="noindex, nofollow">
 
     <title>{ifset title}{include title|stripHtml} | {/ifset}Nette Sandbox</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {*    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"*}
-{*          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">*}
-{*    <link rel="stylesheet" href="{$basePath}/css/style.css">*}
+    <link rel="stylesheet" href="{$basePath}/assets/css/bootstrap.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{$basePath}/assets/css/app.css" type="text/css" media="all">
+
+
     {block head}{/block}
 </head>
 
 <body>
-<div class=container>
-    <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
 
-    {include content}
+<div class="container py-3">
+    <header>
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 fw-normal">Pricing</h1>
+            <p class="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s
+                built with default Bootstrap components and utilities with little customization.</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="steps clearfix mb-5">
+            <ul role="tablist">
+                <li role="tab" class="first done" aria-disabled="false" aria-selected="false"><a id="signup-form-t-0" href="#signup-form-h-0"
+                                                                                                 aria-controls="signup-form-p-0">
+                        <div class="title"><span class="number">1</span>
+                            <span class="title_text">Account Infomation</span>
+                        </div>
+                    </a></li>
+                <li role="tab" class="current" aria-disabled="false" aria-selected="true"><a id="signup-form-t-1" href="#signup-form-h-1"
+                                                                                             aria-controls="signup-form-p-1"><span
+                                class="current-info audible"> </span>
+                        <div class="title"><span class="number">2</span>
+                            <span class="title_text">Personal Information</span>
+                        </div>
+                    </a></li>
+                <li role="tab" class="last" aria-disabled="false" aria-selected="false"><a id="signup-form-t-2" href="#signup-form-h-2"
+                                                                                                aria-controls="signup-form-p-2">
+                        <div class="title"><span class="number">3</span>
+                            <span class="title_text">Payment Details</span>
+                        </div>
+                    </a></li>
+            </ul>
+        </div>
+
+
+        <div n:foreach="$flashes as $flash" n:class="'alert alert-dismissible fade show', 'alert-' . $flash->type" role="alert">
+            {$flash->message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        {include content}
+
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Free</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>10 users included</li>
+                            <li>2 GB of storage</li>
+                            <li>Email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                        <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Pro</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">$15<small class="text-muted fw-light">/mo</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>20 users included</li>
+                            <li>10 GB of storage</li>
+                            <li>Priority email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                        <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-white bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Enterprise</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>30 users included</li>
+                            <li>15 GB of storage</li>
+                            <li>Phone and email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                        <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
 
+
 {block scripts}
+    <script src="{$basePath}/assets/js/bootstrap.min.js"></script>
     {*    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>*}
     {*    <script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>*}
     {*    <script src="{$basePath}/js/main.js"></script>*}
