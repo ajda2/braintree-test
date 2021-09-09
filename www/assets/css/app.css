@@ -106,7 +106,7 @@ display-flex, .form-group, .form-select, .form-radio, .form-textarea, .form-date
 }
 
 #overlay {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;

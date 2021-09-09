@@ -14,6 +14,7 @@ use Mrcek\BraintreeTest\Presenters\FlashMessageType;
 use Mrcek\BraintreeTest\Repository\Exceptions\PersistException;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
+use Nette\Localization\Translator;
 use Nette\Utils\ArrayHash;
 
 /**
@@ -32,16 +33,20 @@ class SubscriptionCheckoutControl extends Control {
 
 	private string $paymentElemId;
 
+	private Translator $translator;
+
 	public function __construct(
 		Plan $plan,
 		string $paymentElemId,
 		Gateway $gateway,
-		SubscriptionFacade $subscriptionFacade
+		SubscriptionFacade $subscriptionFacade,
+		Translator $translator
 	) {
 		$this->plan = $plan;
 		$this->gateway = $gateway;
 		$this->subscriptionFacade = $subscriptionFacade;
 		$this->paymentElemId = $paymentElemId;
+		$this->translator = $translator;
 	}
 
 	public function render(): void {
@@ -91,7 +96,7 @@ class SubscriptionCheckoutControl extends Control {
 
 		$result = $this->gateway->subscription()->create($subscriptionData);
 
-		if($result instanceof Error){
+		if ($result instanceof Error) {
 			/** @var Validation $_error */
 			foreach ($result->errors->deepAll() as $_error) {
 				$this->flashMessage(\sprintf("%s: %s", $_error->code, $_error->message), FlashMessageType::ERROR);
@@ -116,6 +121,7 @@ class SubscriptionCheckoutControl extends Control {
 
 	protected function createComponentCheckoutForm(): Form {
 		$form = new Form();
+		$form->setTranslator($this->translator);
 		$form->getElementPrototype()->setAttribute('id', 'checkout-form');
 
 		$form->addHidden('payment_method_nonce')->setHtmlId('nonce');
@@ -128,7 +134,7 @@ class SubscriptionCheckoutControl extends Control {
 			->setRequired();
 		$form->addText('company', 'component.subscription_checkout.form.company.label')
 			->setRequired(false);
-		$form->addSubmit('send');
+		$form->addSubmit('send', 'component.subscription_checkout.form.send.label');
 
 		$form->onSuccess[] = [
 			$this,

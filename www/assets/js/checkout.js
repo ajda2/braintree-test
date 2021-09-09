@@ -6,7 +6,6 @@ const tokenLink = document.getElementById('get-token-link');
 
 $(function () {
 	const overlay = $('#overlay');
-	console.log(overlay);
 	overlay.show();
 
 	$.get(tokenLink.href, function (data) {

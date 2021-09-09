@@ -10,3 +10,12 @@ step_wizzard:
 
 subscription_checkout:
 	test_payment_card.info: 'Testovací karta:'
+	form:
+		section.contact.headline: 'Osobní údaje'
+		section.card.headline: 'Platební údaje'
+		email.label: 'E-mail'
+		email.error.invalid_type: 'Vyplňte prosím e-mail v platném tvaru'
+		first_name.label: 'Jméno'
+		last_name.label: 'Příjmení'
+		company.label: 'Firma'
+		send.label: 'Zaplatit'

@@ -1,0 +1,70 @@
+{define form string $formName, bool $isAjax}
+    {varType Nette\Application\UI\Form $form}
+    <form n:name="$formName" n:class="$isAjax ? 'ajax'">
+        <div n:foreach="$form->ownErrors as $error" class="alert alert-danger">{$error}</div>
+
+        {foreach $form->controls as $name => $input}
+            {continueIf $input->getOption(rendered) || $input->getOption(type) === hidden}
+
+            {include #input $input}
+        {/foreach}
+    </form>
+{/define}
+
+{define #input $input, ?string $inputClass, ?string $groupClass}
+    {var $name = $input->getName()}
+    {var $icon = $input->getOption("icon")}
+    {default string $defaultGroupClass = 'col-12'}
+
+    <div n:class="'app-form-group', $groupClass ? $groupClass : $defaultGroupClass, $input->isRequired() ? 'required', $input->hasErrors() ? 'has-danger'">
+        {if !$input instanceof Nette\Forms\Controls\Checkbox}
+            {label $input class => "form-label" /}
+        {/if}
+{*        <div n:if="$input instanceof \Nette\Forms\Controls\SubmitButton" class="form-group__label"></div>*}
+{*        <div class="form-group__control">*}
+            <div n:if="$icon !== NULL" class="form-group__control__icon">
+                <div class="icon-box">
+                    <svg role="img" focusable="false" aria-hidden="true">
+                        <use xlink:href="{$baseUrl}/assets/img/sprite.svg#{$icon}"></use>
+                    </svg>
+                </div>
+            </div>
+
+            {if $input instanceof \Nette\Forms\Controls\TextArea}
+                <textarea n:name="$name"
+                        data-error-message-target="#{$input->getHtmlId()}-error"
+                        n:class="$inputClass ?$inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), 'form-control'"></textarea>
+            {elseif $input instanceof \Nette\Forms\Controls\SubmitButton}
+                <button n:name="$name"
+                    type="submit"
+                    n:class="'w-100 btn btn-primary btn-lg', $inputClass ? $inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), $icon !== NULL ? 'form-control--has-icon'">
+                {_$input->caption}
+                </button>
+            {elseif $input instanceof Nette\Forms\Controls\Checkbox}
+                <div class="custom-control custom-control--sm custom-checkbox">
+                    <input n:name="$name"
+                            data-error-message-target="#{$input->getHtmlId()}-error"
+                            n:class="'custom-control-input', $inputClass ? $inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), $icon !== NULL ? 'form-control--has-icon'">
+                    <label n:name="$name" class="custom-control-label">{$input->caption}</label>
+                </div>
+            {elseif $input instanceof Nette\Forms\Controls\SelectBox}
+                <select
+                    n:name="$name"
+                    data-error-message-target="#{$input->getHtmlId()}-error"
+                    n:class="'form-control', $inputClass ? $inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), $icon !== NULL ? 'form-control--has-icon'">
+                </select>
+            {else}
+                <input n:name="$name"
+                        data-error-message-target="#{$input->getHtmlId()}-error"
+                        n:class="'form-control', $inputClass ? $inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), $icon !== NULL ? 'form-control--has-icon'">
+            {/if}
+        </div>
+
+        <span n:ifcontent>{$input->getOption('description')}</span>
+        <div id="{$input->getHtmlId()}-error" class="invalid-feedback">
+            {foreach $input->getErrors() as $error}
+                {$error}
+            {/foreach}
+        </div>
+{*    </div>*}
+{/define}

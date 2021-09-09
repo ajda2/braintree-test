@@ -12,7 +12,7 @@ checkout:
 			success: 'Děkujeme, vaše předplatné bylo úspěšně vytvořeno.'
 	content:
 		h1: platební informace
-		description: vyplňte prosím své platební informace
+		description: vyplňte prosím své platební informace pro dokončení nákupu
 
 result:
 	meta:
