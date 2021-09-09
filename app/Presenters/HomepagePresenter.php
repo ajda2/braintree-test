@@ -13,6 +13,7 @@ use Mrcek\BraintreeTest\Braintree\Subscription\Subscription;
 use Mrcek\BraintreeTest\Braintree\Subscription\SubscriptionFacade;
 use Nette\Application\BadRequestException;
 use Nette\Bridges\ApplicationLatte\Template;
+use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Ramsey\Uuid\Uuid;
 
 final class HomepagePresenter extends BasePresenter {
@@ -50,7 +51,12 @@ final class HomepagePresenter extends BasePresenter {
 	 * @throws BadRequestException
 	 */
 	public function renderResult(string $id): void {
-		$subscription = $this->subscriptionFacade->findByUuid(Uuid::fromString($id));
+		try {
+			$subscription = $this->subscriptionFacade->findByUuid(Uuid::fromString($id));
+		} catch (InvalidUuidStringException $e) {
+			throw new BadRequestException("Subscription with uuid '{$id}' not found");
+		}
+
 		if (!$subscription instanceof Subscription) {
 			throw new BadRequestException("Subscription with uuid '{$id}' not found");
 		}
