@@ -28,8 +28,8 @@ session:
 
 
 database:
-	dsn: 'mysql:host=mysql;dbname=braintree'
-	user: 'braintree'
-	password: '123'
+	dsn: 'mysql:host=%database.host%;dbname=%database.dbname%'
+	user: %database.user%
+	password: %database.password%
 	options:
 		lazy: yes

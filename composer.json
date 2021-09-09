@@ -40,19 +40,25 @@
     "phpstan/phpstan-phpunit": "^0.12.22",
     "slevomat/coding-standard": "^7.0",
     "contributte/codeception": "^1.3",
-    "codeception/module-asserts": "^1.3"
+    "codeception/module-asserts": "^1.3",
+    "codeception/module-db": "^1.1"
   },
   "scripts": {
-    "phpstan": "php vendor/bin/phpstan analyse -l 8 -c .cs/phpstan.neon app --memory-limit 400M",
-    "cs": "php vendor/bin/phpcs --standard=.cs/ruleset.xml --extensions=php --tab-width=4 --colors -sp app",
-    "cs-fix": "php vendor/bin/phpcbf --standard=.cs/ruleset.xml --extensions=php --tab-width=4 --colors -sp app",
+    "phpstan": "vendor/bin/phpstan analyse -l 8 -c .cs/phpstan.neon app tests --memory-limit 400M",
+    "cs": "vendor/bin/phpcs --standard=.cs/ruleset.xml --extensions=php --tab-width=4 --colors -sp app tests --ignore=tests/Integration/temp",
+    "cs-fix": "vendor/bin/phpcbf --standard=.cs/ruleset.xml --extensions=php --tab-width=4 --colors -sp app tests --ignore=tests/Integration/temp",
+    "tests:unit": "codecept run unit",
+    "tests:integration": "codecept run integration",
     "tests": [
+      "@tests:unit",
+      "@tests:integration"
     ],
     "build": [
       "@cs",
-      "@phpstan"
+      "@phpstan",
+      "@tests:unit"
     ],
-    "build-complete": [
+    "build:complete": [
       "@cs",
       "@phpstan",
       "@tests"

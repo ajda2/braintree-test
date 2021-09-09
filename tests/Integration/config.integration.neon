@@ -1,0 +1,10 @@
+parameters:
+	database:
+		host: mysql-test
+		dbname: 'braintree'
+		user: 'braintree'
+		password: '123'
+
+
+services:
+	app.brainTree.gatewayFactory: Mrcek\BraintreeTest\Braintree\GatewayFromDbConfigFactory

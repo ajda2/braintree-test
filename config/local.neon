@@ -4,6 +4,11 @@ parameters:
 		merchan_id: 'your merchant id'
 		public_key: 'your public key'
 		private_key: 'your private key'
+	database:
+		host: mysql
+		dbname: 'braintree'
+		user: 'braintree'
+		password: '123'
 
 
 services:

@@ -1,0 +1,17 @@
+path: ./Integration
+#boostrap: ./Integration/boostrap.php
+modules:
+    enabled:
+        -   Db:
+                dsn: 'mysql:host=mysql-test;dbname=braintree'
+                user: 'braintree'
+                password: '123'
+                dump: 'tests/_data/integration-dump.sql'
+                populate: true
+                cleanup: true
+                reconnect: true
+                waitlock: 10
+                initial_queries:
+                    - 'CREATE DATABASE IF NOT EXISTS braintree;'
+                    - 'USE braintree;'
+                    - 'SET NAMES utf8;'
