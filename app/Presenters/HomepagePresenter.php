@@ -45,18 +45,6 @@ final class HomepagePresenter extends BasePresenter {
 		$this->plan = $plan;
 	}
 
-	public function renderCheckout(): void {
-		/** @var Template $template */
-		$template = $this->getTemplate();
-
-		$template->braintreeClientToken = $this->brainTreeGateway->clientToken()->generate();
-		$template->formId = $this
-			->getComponent('checkout')
-			->getComponent('checkoutForm')
-			->getElementPrototype()
-			->getAttribute('id');
-	}
-
 	/**
 	 * @param string $id
 	 * @throws BadRequestException

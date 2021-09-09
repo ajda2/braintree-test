@@ -53,6 +53,17 @@ class SubscriptionCheckoutControl extends Control {
 		$template->render();
 	}
 
+	public function handleGetClientToken(): void {
+		$presenter = $this->getPresenter();
+
+		if (!$presenter->isAjax()) {
+			return;
+		}
+
+		$presenter->payload->braintree_client_token = $this->gateway->clientToken()->generate();
+		$presenter->sendPayload();
+	}
+
 	public function onFormSubmit(Form $form, ArrayHash $values): void {
 		$customerData = [
 			'firstName'          => $values->offsetGet('firstName'),
@@ -80,8 +91,11 @@ class SubscriptionCheckoutControl extends Control {
 
 		$result = $this->gateway->subscription()->create($subscriptionData);
 
-		if (!$result->success) {
-			$this->flashMessage('component.subscription_checkout.flash.error', FlashMessageType::ERROR);
+		if($result instanceof Error){
+			/** @var Validation $_error */
+			foreach ($result->errors->deepAll() as $_error) {
+				$this->flashMessage(\sprintf("%s: %s", $_error->code, $_error->message), FlashMessageType::ERROR);
+			}
 
 			return;
 		}
@@ -102,6 +116,7 @@ class SubscriptionCheckoutControl extends Control {
 
 	protected function createComponentCheckoutForm(): Form {
 		$form = new Form();
+		$form->getElementPrototype()->setAttribute('id', 'checkout-form');
 
 		$form->addHidden('payment_method_nonce')->setHtmlId('nonce');
 		$form->addText('email', 'component.subscription_checkout.form.email.label')
