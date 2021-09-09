@@ -1,0 +1,29 @@
+homepage:
+	meta:
+		description: ''
+		keywords: ''
+	content:
+		h1: 'přihlášení k odběru'
+		description: 'vyberte si prosím jeden ze skvělých plánů'
+
+checkout:
+	flash:
+		subscription:
+			success: 'Děkujeme, vaše předplatné bylo úspěšně vytvořeno.'
+	content:
+		h1: platební informace
+		description: vyplňte prosím své platební informace
+
+result:
+	meta:
+		description: ''
+		keywords: ''
+	content:
+		h1: 'vaše předplatné'
+		subscription.id: id
+		subscription.created_at: vytvořeno
+		subscription.updated_at: naposledy upraveno
+		subscription.status: stav
+		subscription.price: cena
+		subscription.first_billing_at: první platba
+		subscription.next_billing: další platba

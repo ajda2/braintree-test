@@ -11,6 +11,6 @@ parameters:
 	excludes_analyse:
 
 	ignoreErrors:
-		- '#Access to an undefined property Braintree\\Result\\Error\|Braintree\\Result\\Successful::\$customer#'
+		- '#Access to an undefined property Braintree\\Result\\Successful::\$customer#'
 #		- '#Parameter \#[0-9]+ \$[a-zA-Z0-9]+ of method Nette\\Database\\Table\\Selection::limit\(\) expects int\<0, max\>\|null, [a-z\|]+ given\.#'
 #		- '#Call to method Imagick::[a-zA-Z0-9\\_\(\)]+ with incorrect case: [a-zA-Z0-9\\_]+#'

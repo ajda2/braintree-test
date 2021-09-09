@@ -25,7 +25,7 @@ class ConfigRepository extends AbstractRepository {
 	public const COLUMN_VALUE = 'value';
 
 	/**
-	 * @return array<string, mixed>
+	 * @return array<mixed, mixed>
 	 */
 	protected function createInsertData(IdentifyEntity $entity): array {
 		return [
@@ -35,7 +35,7 @@ class ConfigRepository extends AbstractRepository {
 	}
 
 	/**
-	 * @return array<string, mixed>
+	 * @return array<mixed, mixed>
 	 */
 	protected function createUpdateData(IdentifyEntity $entity): array {
 		return [

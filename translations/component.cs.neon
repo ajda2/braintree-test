@@ -1,0 +1,12 @@
+plan_select:
+	item.button.buy.trial: vyzkoušejte zdarma
+	item.button.buy: zakoupit
+	item.button.buy.trial.period.day: dní
+
+step_wizzard:
+	step.1: výběr plánu
+	step.2: platební informace
+	step.3: přehled
+
+subscription_checkout:
+	test_payment_card.info: 'Testovací karta:'

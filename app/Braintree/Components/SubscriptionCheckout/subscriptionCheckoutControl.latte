@@ -1,0 +1,24 @@
+{varType string $paymentElemId}
+
+<div n:foreach="$flashes as $flash" n:class="'alert alert-dismissible fade show', 'alert-' . $flash->type" role="alert">
+    {_$flash->message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+
+{form checkoutForm}
+
+    {input email}
+    {input firstName}
+    {input lastName}
+    {input company}
+
+    <div class="alert alert-info" role="alert">
+        {_'component.subscription_checkout.test_payment_card.info'}<br>
+        <strong>4111111111111111</strong>
+    </div>
+
+    <div id="{$paymentElemId}"></div>
+
+    {input send}
+{/form}

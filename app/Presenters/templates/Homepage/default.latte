@@ -1,54 +1,15 @@
 {varType string $braintreeCLientToken}
 {varType string $formId}
-{varType array $braintreePlans}
 
-{block content}
-    <h1>Testovací karta</h1>
-    <p>4111111111111111</p>
 
-    {varType Braintree\Plan $_plan}
-    {*<ul>
-        <li n:foreach="$braintreePlans as $_plan">
-            <strong>{$_plan->name}</strong><br>
-        </li>
-    </ul>*}
-
-    {form paymentForm}
-        <div id="dropin-container"></div>
-
-        {input plan}
-        {input send}
-    {/form}
+{block header}
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal">{_'page.homepage.content.h1'|firstUpper}</h1>
+        <p class="fs-5 text-muted">{_'page.homepage.content.description'|firstUpper}</p>
+    </div>
 {/block}
 
-{block scripts}
-	{include parent}
-	<script src="https://js.braintreegateway.com/web/dropin/1.31.2/js/dropin.min.js"></script>*
-
-	<script>
-		const form = document.getElementById({$formId});
-
-		braintree.dropin.create({
-									authorization: {$braintreeCLientToken},
-									container: document.getElementById('dropin-container')
-								}, (error, dropinInstance) => {
-			if (error) console.error(error);
-
-			form.addEventListener('submit', event => {
-				event.preventDefault();
-
-				dropinInstance.requestPaymentMethod((error, payload) => {
-					if (error) console.error(error);
-
-					// Step four: when the user is ready to complete their
-					//   transaction, use the dropinInstance to get a payment
-					//   method nonce for the user's selected payment method, then add
-					//   it a the hidden field before submitting the complete form to
-					//   a server-side integration
-					document.getElementById('nonce').value = payload.nonce;
-					form.submit();
-				});
-			});
-		});
-	</script>
+{block content}
+    {include '../blocks/stepWizzard.latte', actualStep: 1}
+    {control planSelect}
 {/block}

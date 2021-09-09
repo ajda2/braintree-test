@@ -1,0 +1,49 @@
+{varType Mrcek\BraintreeTest\Braintree\Subscription\Subscription $subscription}
+
+
+{block header}
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal">{_'page.result.content.h1'|firstUpper}</h1>
+    </div>
+{/block}
+
+{block content}
+    {include '../blocks/stepWizzard.latte', actualStep: 3}
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th scope="row" class="text-right">{_'page.result.content.subscription.id'|upper}</th>
+                <td>{$subscription->getUuid()}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="text-right">{_'page.result.content.subscription.created_at'|upper}</th>
+                <td>{$subscription->getCreatedAt()|date:'j.n.Y H:i:s'}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="text-right">{_'page.result.content.subscription.updated_at'|upper}</th>
+                <td>{$subscription->getUpdatedAt()}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="text-right">{_'page.result.content.subscription.status'|upper}</th>
+                <td>{$subscription->getStatus()}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="text-right">{_'page.result.content.subscription.price'|upper}</th>
+                <td>{$subscription->getPrice()} {$subscription->getCurrencyIso()}</td>
+            </tr>
+            {*<tr>
+                <td class="text-right">{_'page.page.result.content.subscription.period'|upper}</td>
+                <td>{$subscription->getBillingPeriodStartAt()|date:'j.n.Y'} - {$subscription->getBillingPeriodEndAt()|date:'j.n.Y'}</td>
+            </tr>*}
+            <tr>
+                <th scope="row" class="text-right">{_'page.result.content.subscription.first_billing_at'|upper}</th>
+                <td>{$subscription->getFirstBillingAt()|date:'j.n.Y'}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="text-right">{_'page.result.content.subscription.next_billing'|upper}</th>
+                <td>{$subscription->getNextBillingAt()|date:'j.n.Y'}, {$subscription->getNextBillingPeriodAmount()} {$subscription->getCurrencyIso()}</td>
+            </tr>
+        </table>
+    </div>
+{/block}

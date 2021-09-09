@@ -28,6 +28,7 @@
     "ramsey/uuid": "^4.2",
     "braintree/braintree_php": "^6.4",
     "myclabs/php-enum": "^1.8",
+    "contributte/translation": "^0.9.3",
     "ext-pdo": "*",
     "ext-json": "*"
   },

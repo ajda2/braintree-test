@@ -6,6 +6,18 @@ application:
 	mapping:
 		*: Mrcek\BraintreeTest\*Module\Presenters\*Presenter
 
+extensions:
+	translation: Contributte\Translation\DI\TranslationExtension
+
+translation:
+	locales:
+		whitelist: [cs]
+		default: cs
+		fallback: [cs]
+	dirs:
+		- %appDir%/../translations
+	returnOriginalMessage: true
+
 tracy:
 	showLocation: true
 

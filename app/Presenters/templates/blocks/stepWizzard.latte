@@ -1,0 +1,16 @@
+{default int $actualStep = 0}
+{var array $stepLinks = [1 => ':Homepage:default', 'this#', 'this#']}
+
+<div class="steps clearfix mb-5">
+    <ul role="tablist">
+        <li n:foreach="$stepLinks as $_index => $_step" role="tab" n:class="$iterator->isFirst() ? 'first', $iterator->isLast() ? 'last', $_index === $actualStep ? 'current', $_index < $actualStep ? 'done'"
+                n:attr="aria-selected: $_index === $actualStep ? 'true' : 'false', aria-disabled: $_index > $actualStep ? 'true' : 'false'">
+            <a id="step_wizzard-{$_index}" n:href="{$stepLinks[$_index]}" aria-controls="step_wizzard-{$_index}">
+                <span n:if="$_index === $actualStep" class="current-info audible"> </span>
+                <div class="title"><span class="number">{$_index}</span>
+                    <span class="title_text">{_'component.step_wizzard.step.' . $_index|firstUpper}</span>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>

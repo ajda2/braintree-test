@@ -85,7 +85,7 @@ abstract class AbstractRepository {
 	}
 
 	/**
-	 * @param array<string, mixed> $by
+	 * @param array<mixed, mixed> $by
 	 * @param string|null          $order
 	 * @param int<0, max>|null     $limit
 	 * @param int<0, max>|null     $offset
@@ -155,13 +155,13 @@ abstract class AbstractRepository {
 
 	/**
 	 * @param T $entity
-	 * @return array<string, mixed>
+	 * @return array<mixed, mixed>
 	 */
 	abstract protected function createInsertData(IdentifyEntity $entity): array;
 
 	/**
 	 * @param T $entity
-	 * @return array<string, mixed>
+	 * @return array<mixed, mixed>
 	 */
 	abstract protected function createUpdateData(IdentifyEntity $entity): array;
 

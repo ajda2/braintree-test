@@ -3,3 +3,9 @@ services:
 	- @app.brainTree.gatewayFactory::create()
 	- Mrcek\BraintreeTest\Config\ConfigRepository
 	- Mrcek\BraintreeTest\Config\ConfigFacade
+	- Mrcek\BraintreeTest\Braintree\Subscription\SubscriptionRepository
+	- Mrcek\BraintreeTest\Braintree\Subscription\SubscriptionFacade
+
+	# Component Factories
+	- Mrcek\BraintreeTest\Braintree\Components\PlanSelect\PlanSelectControlFactory
+	- Mrcek\BraintreeTest\Braintree\Components\SubscriptionCheckout\SubscriptionCheckoutControlFactory

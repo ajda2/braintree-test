@@ -1,0 +1,30 @@
+{varType array $plans}
+
+{dump $plans}
+
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div n:foreach="$plans as $_plan" class="col">
+        {varType Braintree\Plan $_plan}
+        <div n:class="'card mb-4 rounded-3 shadow-sm', $iterator->isLast() ? 'border-primary'">
+            <div n:class="'card-header py-3', $iterator->isLast() ? 'text-white bg-primary border-primary'">
+                <h4 class="my-0 fw-normal">{$_plan->name}</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                    {$_plan->price} {$_plan->currencyIsoCode}<small class="text-muted fw-light">/mo</small>
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>{$_plan->description}</li>
+                </ul>
+                <a n:href="select!, planId => $_plan->id" type="button" n:class="'w-100 btn btn-lg', $iterator->isFirst() ? 'btn-outline-primary' : 'btn-primary'">
+                    {if $_plan->trialPeriod}
+                        {_'component.plan_select.item.button.buy.trial'|firstUpper}
+                        <span n:if="$_plan->trialPeriod">{$_plan->trialDuration} {_'component.plan_select.item.button.buy.trial.period.'.$_plan->trialDurationUnit}</span>
+                    {else}
+                        {_'component.plan_select.item.button.buy'|firstUpper}
+                    {/if}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

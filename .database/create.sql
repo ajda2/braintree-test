@@ -28,6 +28,7 @@ CREATE TABLE `subscription` (
   `uuid` char(36) CHARACTER SET ascii NOT NULL,
   `braintree_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `braintree_plan_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `braintree_customer_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `price` varchar(50) COLLATE utf8mb4_czech_ci NOT NULL,
@@ -40,7 +41,6 @@ CREATE TABLE `subscription` (
   `paid_through_date` datetime DEFAULT NULL,
   `merchant_account_id` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `never_expires` tinyint(1) unsigned NOT NULL,
-  `next_bill_amount` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `next_billing_period_amount` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `payment_method_token` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id`)
