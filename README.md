@@ -12,7 +12,7 @@ docker-compose up -d
 *Pozn.: Při prvním spuštění může build Docker image trvat déle*
 
 **2. Nastavení práv na zápis pro složky:**   
-Adresářů `/temp` a `log` je potřeba nastavit práva pro zápis (ideálně rekurzivně i pro podadresáře) dle Vašeho systému.
+Adresářů `/temp` a `/log` je potřeba nastavit práva pro zápis dle Vašeho systému (ideálně rekurzivně i pro podadresáře).
 
 **3. Instalace závislostí na spuštěném prostředí**
 ```
@@ -21,10 +21,10 @@ docker exec -it php-apache composer install
 
 **4. Nastavení klíčů pro Braintree API**   
 Pro nastavení klíčů je možné použít 2 způsoby, podle toho, které Ti vyhovují více: 
-1. `.neon` konfigurační soubor - *Výchozí stav. Není potřeba nic měnit*
+1. **Konfigurační soubor `.neon`** - *Výchozí stav. Stačí pouze doplnit klíče*
    1. V souboru [config/local.neon](./config/local.neon) je potřeba doplnit Vaše `merchan_id`, `public_key` a `private_key` pro Braintree.
    2. V konfig souboru [config/local.neon](./config/local.neon) je zaregistrována služba `app.brainTree.gatewayFactory: Mrcek\BraintreeTest\Braintree\GatewayManualConfigFactory`
-2. DB tabulka s konfigrací aplikace
+2. **DB tabulka s konfigurací aplikace**
    1. Skrze [Adminer](http://localhost:8081/) v DB tabulce `config` vyplň hodnoty klíčů
    2. V konfig souboru [config/local.neon](./config/local.neon) zaregistruj službu `app.brainTree.gatewayFactory: Mrcek\BraintreeTest\Braintree\GatewayFromDbConfigFactory`
    
@@ -39,10 +39,11 @@ Pro administraci DB je připraven nástroj Adminer.
 Dostupný na portu [8081](http://localhost:8081/)   
 
 
-Databáze se vytvoří automaticky při vytvoření Docker image skrze `docker-compose`. 
-Výchozí stav DB je uložena v [.database/create.sql](./database/create.sql)
+Databáze se vytvoří automaticky při vytvoření Docker image skrze `docker-compose`.    
+Výchozí stav DB je uložen v [.database/create.sql](./database/create.sql)
 
 ### Přístupy do DB
+*Pro Nette aplikaci jsou již nastaveny*
 ```
 host: mysql
 dbname: 'braintree'
@@ -52,13 +53,13 @@ password: '123'
 
 
 ## Kontrola kódu a testy
-Pro Unit a Integrační testy je použit nástroj [Codeception](https://codeception.com/)   
-Pro jednotlivé kontroly a testy je možné spouštět samostatně i dohromady jako composer skripty dle potřeby.  
-Detaily jsou v souboru [composer.json](./composer.json) v sekci `scripts`
+Pro testy je použit nástroj [Codeception](https://codeception.com/)   
+Jednotlivé kontroly a testy je možné spouštět samostatně i dohromady jako composer skripty dle potřeby.  
+Jejich nastavení najdeš v souboru [composer.json](./composer.json) v sekci `scripts`
 
 **Spuštění všech kontrol a testů**
 ```
-docker exec -it php-apache composer build-complete
+docker exec -it php-apache composer build:complete
 ```
 
 **Spuštění kontroly a Unit testů bez integračních testů**
@@ -85,7 +86,7 @@ docker exec -it php-apache composer phpstan
 
 
 ## Běhové prostředí
-Aplikace je připravena k okamžitému spuštění v Docker kontejnerech.
+Aplikace je připravena k okamžitému spuštění v Docker kontejnerech.   
 Konfigurace celého prostředí je v souboru [docker-compose.yml](./docker-compose.yml).
 
 **Docker Image:**
