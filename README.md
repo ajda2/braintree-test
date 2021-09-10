@@ -84,6 +84,20 @@ Pravidla jsou definovány v souboru [.cs/phpstan.neon](./.cs/phpstan.neon)
 docker exec -it php-apache composer phpstan
 ``` 
 
+**Spuštění Unit testů**   
+Testy najdeš v adresáři [tests/Unit](./tests/Unit)
+```
+docker exec -it php-apache composer tests:unit
+``` 
+
+**Spuštění Integračních testů**   
+Testy najdeš v adresáři [tests/Integration](./tests/Integration)
+```
+docker exec -it php-apache composer tests:integration
+``` 
+
+**TODO: Spuštění Akceptačních testů**
+
 
 ## Běhové prostředí
 Aplikace je připravena k okamžitému spuštění v Docker kontejnerech.   
