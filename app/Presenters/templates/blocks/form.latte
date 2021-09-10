@@ -22,7 +22,8 @@
         {/if}
 {*        <div n:if="$input instanceof \Nette\Forms\Controls\SubmitButton" class="form-group__label"></div>*}
 {*        <div class="form-group__control">*}
-            <div n:if="$icon !== NULL" class="form-group__control__icon">
+
+        <div n:if="$icon !== NULL" class="form-group__control__icon">
                 <div class="icon-box">
                     <svg role="img" focusable="false" aria-hidden="true">
                         <use xlink:href="{$baseUrl}/assets/img/sprite.svg#{$icon}"></use>
@@ -31,34 +32,33 @@
             </div>
 
             {if $input instanceof \Nette\Forms\Controls\TextArea}
-                <textarea n:name="$name"
+            <textarea n:name="$name"
                         data-error-message-target="#{$input->getHtmlId()}-error"
                         n:class="$inputClass ?$inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), 'form-control'"></textarea>
-            {elseif $input instanceof \Nette\Forms\Controls\SubmitButton}
-                <button n:name="$name"
-                    type="submit"
+        {elseif $input instanceof \Nette\Forms\Controls\SubmitButton}
+            <button n:name="$name"
+                        type="submit"
                     n:class="'w-100 btn btn-primary btn-lg', $inputClass ? $inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), $icon !== NULL ? 'form-control--has-icon'">
                 {_$input->caption}
-                </button>
-            {elseif $input instanceof Nette\Forms\Controls\Checkbox}
-                <div class="custom-control custom-control--sm custom-checkbox">
-                    <input n:name="$name"
-                            data-error-message-target="#{$input->getHtmlId()}-error"
-                            n:class="'custom-control-input', $inputClass ? $inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), $icon !== NULL ? 'form-control--has-icon'">
-                    <label n:name="$name" class="custom-control-label">{$input->caption}</label>
-                </div>
-            {elseif $input instanceof Nette\Forms\Controls\SelectBox}
-                <select
+            </button>
+        {elseif $input instanceof Nette\Forms\Controls\Checkbox}
+            <div class="custom-control custom-control--sm custom-checkbox">
+                <input n:name="$name"
+                        data-error-message-target="#{$input->getHtmlId()}-error"
+                        n:class="'custom-control-input', $inputClass ? $inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), $icon !== NULL ? 'form-control--has-icon'">
+                <label n:name="$name" class="custom-control-label">{$input->caption}</label>
+            </div>
+        {elseif $input instanceof Nette\Forms\Controls\SelectBox}
+            <select
                     n:name="$name"
                     data-error-message-target="#{$input->getHtmlId()}-error"
                     n:class="'form-control', $inputClass ? $inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), $icon !== NULL ? 'form-control--has-icon'">
-                </select>
-            {else}
-                <input n:name="$name"
-                        data-error-message-target="#{$input->getHtmlId()}-error"
-                        n:class="'form-control', $inputClass ? $inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), $icon !== NULL ? 'form-control--has-icon'">
-            {/if}
-        </div>
+            </select>
+        {else}
+            <input n:name="$name"
+                    data-error-message-target="#{$input->getHtmlId()}-error"
+                    n:class="'form-control', $inputClass ? $inputClass, $input->getControl()->getAttribute('class') ? $input->getControl()->getAttribute('class'), $icon !== NULL ? 'form-control--has-icon'">
+        {/if}
 
         <span n:ifcontent>{$input->getOption('description')}</span>
         <div id="{$input->getHtmlId()}-error" class="invalid-feedback">
@@ -66,5 +66,6 @@
                 {$error}
             {/foreach}
         </div>
-{*    </div>*}
+    </div>
+    {*    </div>*}
 {/define}

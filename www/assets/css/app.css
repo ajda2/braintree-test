@@ -105,6 +105,14 @@ display-flex, .form-group, .form-select, .form-radio, .form-textarea, .form-date
 	display: -webkit-flex;
 }
 
+.has-danger label {
+	color: #dc3545;
+}
+
+.has-danger .invalid-feedback {
+	display: block;
+}
+
 #overlay {
 	position: fixed;
 	top: 0;
