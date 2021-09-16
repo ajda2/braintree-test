@@ -106,11 +106,13 @@ Konfigurace celého prostředí je v souboru [docker-compose.yml](./docker-compo
 **Docker Image:**
 * [php-apache](./.docker/php-apache/Dockerfile) 
   * PHP 7.4 s apache
+    * TODO: Update na 8.1
   * Dostupný na portu [8080](http://localhost:8080/)
   * Obsahuje všechyn potřebné rozšíření a balíčky
   * Nakonfigurováno odchytávání e-mailů do služby Mailhog
 * [php-apache-debug](./.docker/php-apache-debug/Dockerfile)
   * PHP 7.4 s apache a aktivním XDebug
+    * TODO: Update na 8.1
   * Dostupný na portu [8083](http://localhost:8083/)
 * mysql
   * Oficiální image MySQL 5.7 s daty aplikace
