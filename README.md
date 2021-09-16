@@ -4,6 +4,7 @@ Zakoupení předplatného skrze "platební bránu" [Braintree](https://www.brain
 Platební brána je v testovacím (sandbox) režimu, takže **NEPROBÍHÁJÍ reálné platby**.
 
 ## Spuštění aplikace
+// TODO: Přidat makefile
 
 **1. Spustit "server" v Dockeru:**
 ```
