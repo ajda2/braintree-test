@@ -53,6 +53,9 @@
       "@tests:unit",
       "@tests:integration"
     ],
+    "tests:coverage": [
+      "codecept run --coverage-html"
+    ],
     "build": [
       "@cs",
       "@phpstan",

@@ -12,13 +12,14 @@ settings:
     shuffle: true
     lint: true
     report_useless_tests: true
+    log: true
 paths:
     tests: tests
     output: tests/_output
     support: tests/_support
     data: tests/_data
     temp: tests/_temp
-#coverage:
-#    enabled: true
-#    include:
-#        - src/*
+coverage:
+    enabled: true
+    include:
+        - app/*

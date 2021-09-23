@@ -7,3 +7,7 @@ node_modules/*
 !.gitkeep
 .docker/php-apache/logs
 .docker/php-apache-debug/logs
+tests/_log/*
+tests/_output/*
+tests/_support/*
+tests/_temp/*

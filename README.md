@@ -97,6 +97,12 @@ Testy najdeš v adresáři [tests/Integration](./tests/Integration)
 docker exec -it php-apache composer tests:integration
 ``` 
 
+**Spuštění testů včetně pokrytí**
+Výsledek pokrytí je umístěn v adresáři `./tests/_output/coverage`
+```
+docker exec -it php-apache composer tests:coverage
+```
+
 **TODO: Spuštění Akceptačních testů**
 
 
