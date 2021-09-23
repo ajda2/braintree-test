@@ -1,4 +1,2 @@
+actor: UnitTester
 path: ./Unit
-modules:
-    enabled:
-        - Asserts

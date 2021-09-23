@@ -3,11 +3,9 @@
 namespace Mrcek\BraintreeTest\Tests\Integration\Braintree\Subscription;
 
 
-use Codeception\Module\Db;
 use Mrcek\BraintreeTest\Braintree\Subscription\Subscription;
 use Mrcek\BraintreeTest\Braintree\Subscription\SubscriptionFacade;
 use Mrcek\BraintreeTest\Braintree\Subscription\SubscriptionRepository;
-use Mrcek\BraintreeTest\Tests\Integration\Bootstrap;
 use Mrcek\BraintreeTest\Tests\Integration\IntegrationTestCase;
 use Ramsey\Uuid\Uuid;
 
@@ -15,14 +13,13 @@ class SubscriptionFacadeTest extends IntegrationTestCase {
 
 	private SubscriptionFacade $subscriptionFacade;
 
-	private Db $db;
-
 	public function _before(): void {
 		parent::_before();
 
-		$container = Bootstrap::getContainer();
-		$this->subscriptionFacade = $container->getByType(SubscriptionFacade::class);
-		$this->db = $this->getDb();
+		/** @var SubscriptionFacade $_service */
+		$_service = $this->tester->grabService(SubscriptionFacade::class);
+
+		$this->subscriptionFacade = $_service;
 	}
 
 	public function testFindByUuid(): void {
@@ -80,7 +77,7 @@ class SubscriptionFacadeTest extends IntegrationTestCase {
 
 		$this->subscriptionFacade->saveBraintreeSubscription($braintreeSubs, $braintreeCustomerId, $currencyIso);
 
-		$this->db->seeInDatabase(
+		$this->tester->seeInDatabase(
 			SubscriptionRepository::TABLE_NAME,
 			[
 				SubscriptionRepository::COLUMN_BRAINTREE_ID              => $braintreeId,

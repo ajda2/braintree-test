@@ -2,26 +2,14 @@
 
 namespace Mrcek\BraintreeTest\Tests\Integration;
 
-use Codeception\Exception\ModuleException;
+use Codeception\Actor;
 use Codeception\Module\Db;
 use Codeception\Test\Unit;
-use Nette\DI\Container;
+use Contributte\Codeception\Module\NetteDIModule;
 
 class IntegrationTestCase extends Unit {
 
-	protected Container $container;
-
-	/**
-	 * @throws ModuleException
-	 */
-	protected function getDb(): Db {
-		$module = $this->getModule('Db');
-
-		if (!$module instanceof Db) {
-			throw new \Exception('Db module not found');
-		}
-
-		return $module;
-	}
+	/** @var Actor|NetteDIModule|Db */
+	protected $tester;
 
 }

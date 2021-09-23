@@ -89,7 +89,7 @@ abstract class AbstractRepository {
 	 * @param string|null          $order
 	 * @param int<0, max>|null     $limit
 	 * @param int<0, max>|null     $offset
-	 * @return ArrayList|T[]
+	 * @return ArrayList<T>|T[]
 	 */
 	public function findBy(array $by, ?string $order = null, ?int $limit = null, ?int $offset = null): ArrayList {
 		$result = new ArrayList();

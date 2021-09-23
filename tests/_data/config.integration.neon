@@ -1,0 +1,21 @@
+parameters:
+	database:
+		host: mysql-test
+		dbname: 'braintree'
+		user: 'braintree'
+		password: '123'
+
+	brainTree:
+		environment: \Mrcek\BraintreeTest\Braintree\Environment::SANDBOX
+		merchan_id: 'your merchant id'
+		public_key: 'your public key'
+		private_key: 'your private key'
+
+
+translation:
+	dirs!:
+		- %appDir%/../../translations
+
+services:
+	app.brainTree.gatewayFactory: Mrcek\BraintreeTest\Braintree\GatewayFromDbConfigFactory
+	cache.storage: Nette\Caching\Storages\DevNullStorage

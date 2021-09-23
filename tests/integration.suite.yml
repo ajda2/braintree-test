@@ -1,7 +1,16 @@
+actor: IntegrationTester
 path: ./Integration
 #boostrap: ./Integration/boostrap.php
 modules:
     enabled:
+        - Contributte\Codeception\Module\NetteDIModule:
+            tempDir: ../_temp/integration
+            logDir: ../_log
+            configFiles:
+                - ./../../config/common.neon
+                - ./../_data/config.integration.neon
+            debugMode: false
+            newContainerForEachTest: false
         -   Db:
                 dsn: 'mysql:host=mysql-test;dbname=braintree'
                 user: 'braintree'
@@ -9,7 +18,7 @@ modules:
                 dump: 'tests/_data/integration-dump.sql'
                 populate: true
                 cleanup: true
-                reconnect: true
+                reconnect: false
                 waitlock: 10
                 initial_queries:
                     - 'CREATE DATABASE IF NOT EXISTS braintree;'

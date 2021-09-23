@@ -4,6 +4,10 @@ extensions:
     enabled:
         - Codeception\Extension\RunFailed
 
+modules:
+    enabled:
+        - Asserts
+
 settings:
     shuffle: true
     lint: true
@@ -12,7 +16,8 @@ paths:
     tests: tests
     output: tests/_output
     support: tests/_support
-    data: tests
+    data: tests/_data
+    temp: tests/_temp
 #coverage:
 #    enabled: true
 #    include:
